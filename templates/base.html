@@ -5,16 +5,24 @@
 		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
 		<title>{% block title %}{% endblock %} - Brian Arriaga</title>
-		<title>Brian Arriaga - Index</title>
-        {% block meta %}
+		{% block meta %}
 		<meta name="description" content="Brian Arriaga's Portfolio" />
 		<meta name="author" content="Brian Arriaga" />
-		<meta name="keywords" content="Brian Arriaga"/>
+		<meta
+			name="keywords"
+			content="Brian Arriaga, Systems Engineer, Software Developer, Portfolio"
+		/>
 		{% endblock meta %}
 
 		<!-- Favicons -->
-		<link href="{{ url_for('static', filename='assets/img/favicon.png') }}" rel="icon" />
-		<link href="{{ url_for('static', filename='assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon" />
+		<link
+			href="{{ url_for('static', filename='assets/img/favicon.png') }}"
+			rel="icon"
+		/>
+		<link
+			href="{{ url_for('static', filename='assets/img/apple-touch-icon.png') }}"
+			rel="apple-touch-icon"
+		/>
 
 		<!-- Google Fonts -->
 		<link
@@ -23,7 +31,10 @@
 		/>
 
 		<!-- Vendor CSS Files -->
-		<link href="{{ url_for('static', filename='assets/vendor/aos/aos.css') }}" rel="stylesheet" />
+		<link
+			href="{{ url_for('static', filename='assets/vendor/aos/aos.css') }}"
+			rel="stylesheet"
+		/>
 		<link
 			href="{{ url_for('static', filename='assets/vendor/bootstrap/css/bootstrap.min.css') }}"
 			rel="stylesheet"
@@ -32,15 +43,24 @@
 			href="{{ url_for('static', filename='assets/vendor/bootstrap-icons/bootstrap-icons.css') }}"
 			rel="stylesheet"
 		/>
-		<link href="{{ url_for('static', filename='assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet" />
+		<link
+			href="{{ url_for('static', filename='assets/vendor/boxicons/css/boxicons.min.css') }}"
+			rel="stylesheet"
+		/>
 		<link
 			href="{{ url_for('static', filename='assets/vendor/glightbox/css/glightbox.min.css') }}"
 			rel="stylesheet"
 		/>
-		<link href="{{ url_for('static', filename='assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet" />
+		<link
+			href="{{ url_for('static', filename='assets/vendor/swiper/swiper-bundle.min.css') }}"
+			rel="stylesheet"
+		/>
 
 		<!-- Main CSS File -->
-		<link href="{{ url_for('static', filename='assets/css/style.css') }}" rel="stylesheet" />
+		<link
+			href="{{ url_for('static', filename='assets/css/style.css') }}"
+			rel="stylesheet"
+		/>
 	</head>
 
 	<body>
@@ -50,7 +70,10 @@
 				class="container-fluid d-flex justify-content-between align-items-center"
 			>
 				<a href="{{ url_for('index') }}" class="logo"
-					><img src="{{ url_for('static', filename='assets/img/logo.png') }}" alt="" class="img-fluid"
+					><img
+						src="{{ url_for('static', filename='assets/img/logo.png') }}"
+						alt=""
+						class="img-fluid"
 				/></a>
 
 				<nav id="navbar" class="navbar order-last order-lg-0">
@@ -67,28 +90,45 @@
 				<!-- .navbar -->
 
 				<div class="header-social-links">
-					<a href="https://x.com/BAXTOR95" class="twitter"><i class="bi bi-twitter"></i></a>
-					<a href="https://github.com/BAXTOR95" class="github"><i class="bi bi-github"></i></a>
-					<a href="https://www.linkedin.com/in/brian-arriaga-s-28845b138/" class="linkedin"><i class="bi bi-linkedin"></i></a>
+					<a href="https://x.com/BAXTOR95" class="twitter"
+						><i class="bi bi-twitter"></i
+					></a>
+					<a href="https://github.com/BAXTOR95" class="github"
+						><i class="bi bi-github"></i
+					></a>
+					<a
+						href="https://www.linkedin.com/in/brian-arriaga-s-28845b138/"
+						class="linkedin"
+						><i class="bi bi-linkedin"></i
+					></a>
 				</div>
 			</div>
 		</header>
 		<!-- End Header -->
 
-        {% block content %}{% endblock %}
+		{% block content %}{% endblock %}
 
 		<!-- ======= Footer ======= -->
 		<footer id="footer">
 			<div class="container">
 				<h3>Brian Arriaga</h3>
 				<p>
-					Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni
-					eligendi fuga maxime saepe commodi placeat.
+					Dedicated to developing secure, efficient, and scalable software
+					solutions. Let's connect and discuss how I can help bring your ideas
+					to life.
 				</p>
 				<div class="social-links">
-					<a href="https://x.com/BAXTOR95" class="twitter"><i class="bx bxl-twitter"></i></a>
-					<a href="https://github.com/BAXTOR95" class="github"><i class="bx bxl-github"></i></a>
-					<a href="https://www.linkedin.com/in/brian-arriaga-s-28845b138/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+					<a href="https://x.com/BAXTOR95" class="twitter"
+						><i class="bx bxl-twitter"></i
+					></a>
+					<a href="https://github.com/BAXTOR95" class="github"
+						><i class="bx bxl-github"></i
+					></a>
+					<a
+						href="https://www.linkedin.com/in/brian-arriaga-s-28845b138/"
+						class="linkedin"
+						><i class="bx bxl-linkedin"></i
+					></a>
 				</div>
 			</div>
 		</footer>
