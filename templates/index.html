@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+<!-- Title -->
+{% block title %}Home{% endblock %}
+<!-- Content -->
+{% block content %}
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex align-items-center">
+	<div
+		class="container d-flex flex-column align-items-center"
+		data-aos="zoom-in"
+		data-aos-delay="100"
+	>
+		<h1>Brian Arriaga</h1>
+		<p>
+			I'm
+			<span
+				class="typed"
+				data-typed-items="Developer, Software Engineer, Systems Engineer, Data Analyst"
+			></span>
+		</p>
+		<div class="social-links">
+			<a href="https://x.com/BAXTOR95" class="twitter"
+				><i class="bx bxl-twitter"></i
+			></a>
+			<a href="https://github.com/BAXTOR95" class="github"
+				><i class="bx bxl-github"></i
+			></a>
+			<a
+				href="https://www.linkedin.com/in/brian-arriaga-s-28845b138/"
+				class="linkedin"
+				><i class="bx bxl-linkedin"></i
+			></a>
+		</div>
+		<a href="{{ url_for('about') }}" class="btn-about">About Me</a>
+	</div>
+</section>
+<!-- End Hero -->
+
+{% endblock %}

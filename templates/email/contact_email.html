@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Contact Form Submission</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				margin: 0;
+				padding: 0;
+				background-color: #f4f4f4;
+			}
+			.container {
+				width: 100%;
+				max-width: 600px;
+				margin: 0 auto;
+				background-color: #ffffff;
+				padding: 20px;
+				border-radius: 10px;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			}
+			h1 {
+				color: #333333;
+			}
+			p {
+				color: #666666;
+			}
+			.contact-details {
+				margin-top: 20px;
+			}
+			.contact-details p {
+				margin: 0;
+				padding: 5px 0;
+			}
+			.footer {
+				margin-top: 20px;
+				text-align: center;
+				color: #999999;
+				font-size: 12px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Contact Form Submission</h1>
+			<p>Dear {{ recipient_name }},</p>
+			<p>You have received a new message from your portfolio website. Here are the details:</p>
+			<div class="contact-details">
+				<p><strong>Name:</strong> {{ contact.name }}</p>
+				<p><strong>Email:</strong> {{ contact.email }}</p>
+				<p><strong>Subject:</strong> {{ contact.subject }}</p>
+				<p><strong>Message:</strong></p>
+				<p>{{ contact.message }}</p>
+			</div>
+			<p>Best regards,</p>
+			<p>Your Portfolio Website</p>
+			<div class="footer">
+				<p>&copy; 2024 Brian. All rights reserved.</p>
+			</div>
+		</div>
+	</body>
+</html>
