@@ -17,11 +17,16 @@ login = LoginManager(app)
 login.login_view = 'login'
 csrf = CSRFProtect(app)
 
+
 @login.user_loader
 def load_user(user_id):
     from models import User
 
     return User.query.get(int(user_id))
+
+
+# Add zip to Jinja2 environment globals
+app.jinja_env.globals.update(zip=zip)
 
 from routes import *
 

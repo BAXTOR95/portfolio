@@ -171,3 +171,5 @@ cython_debug/
 
 Kelly/
 Resume/
+
+static/uploads/

@@ -167,21 +167,19 @@
 	}
 
 	/**
-	 * Porfolio isotope and filter
+	 * Portfolio isotope and filter
 	 */
 	window.addEventListener('load', () => {
-		let portfolioContainer = select('.portfolio-container');
+		let portfolioContainer = document.querySelector('.portfolio-container');
 		if (portfolioContainer) {
 			let portfolioIsotope = new Isotope(portfolioContainer, {
 				itemSelector: '.portfolio-item',
 			});
 
-			let portfolioFilters = select('#portfolio-flters li', true);
+			let portfolioFilters = document.querySelectorAll('#portfolio-flters li');
 
-			on(
-				'click',
-				'#portfolio-flters li',
-				function (e) {
+			portfolioFilters.forEach((el) => {
+				el.addEventListener('click', function (e) {
 					e.preventDefault();
 					portfolioFilters.forEach(function (el) {
 						el.classList.remove('filter-active');
@@ -194,9 +192,8 @@
 					portfolioIsotope.on('arrangeComplete', function () {
 						AOS.refresh();
 					});
-				},
-				true,
-			);
+				});
+			});
 		}
 	});
 

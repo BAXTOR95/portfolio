@@ -8,7 +8,8 @@ from wtforms import (
     SubmitField,
     PasswordField,
     BooleanField,
-    MultipleFileField
+    MultipleFileField,
+    FieldList,
 )
 from wtforms.validators import DataRequired, Email, URL
 
@@ -53,6 +54,7 @@ class ProjectForm(FlaskForm):
 
 
 class EditProjectForm(ProjectForm):
+    keep_images = FieldList(BooleanField('Keep'), min_entries=0)
     images = MultipleFileField(
         'Project Images',
         validators=[FileAllowed(['jpg', 'png'], 'Images only!')],
@@ -60,8 +62,10 @@ class EditProjectForm(ProjectForm):
     )
     submit = SubmitField('Update Project')
 
+
 class DeleteForm(FlaskForm):
     submit = SubmitField('Delete')
+
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])

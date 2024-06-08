@@ -61,14 +61,16 @@ def contact():
     return render_template('contact.html', form=form)
 
 
-@app.route('/portfolio_details')
-def portfolio_details():
-    return render_template('portfolio-details.html')
-
-
 @app.route('/portfolio')
 def portfolio():
-    return render_template('portfolio.html')
+    projects = Project.query.all()
+    return render_template('portfolio.html', projects=projects)
+
+
+@app.route('/portfolio_details/<int:id>')
+def portfolio_details(id):
+    project = Project.query.get_or_404(id)
+    return render_template('portfolio-details.html', project=project)
 
 
 @app.route('/resume')
@@ -116,9 +118,16 @@ def admin():
 
 def save_images(files):
     image_urls = []
+    if not isinstance(files, list):
+        files = [files]
     for file in files:
+        if file.filename == '':  # Skip empty filenames
+            continue
         filename = secure_filename(file.filename)
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        os.makedirs(
+            os.path.dirname(file_path), exist_ok=True
+        )  # Ensure the directory exists
         file.save(file_path)
         image_urls.append(file_path.replace("\\", "/"))  # Ensure consistent URL format
     return image_urls
@@ -168,10 +177,33 @@ def edit_project(id):
         project.url = form.url.data
         project.description = form.description.data
         project.title = form.title.data
+
+        # Handle existing images
+        keep_image_ids = [
+            int(id)
+            for id, keep in zip(
+                request.form.getlist('keep_image_ids'),
+                request.form.getlist('keep_images'),
+            )
+            if keep == 'y'
+        ]
+        for image in project.images:
+            if image.id not in keep_image_ids:
+                db.session.delete(image)
+                try:
+                    file_path = os.path.normpath(image.image_url)
+                    if file_path.startswith('/'):
+                        file_path = file_path[1:]
+                    os.remove(file_path)
+                except Exception as e:
+                    print(f"Error deleting image file: {e}")
+
+        # Commit the changes until now
         db.session.commit()
 
+        # Handle new images
         files = request.files.getlist("images")
-        if files:
+        if files and files[0].filename != '':
             image_urls = save_images(files)
             for url in image_urls:
                 image = ProjectImage(image_url=url, project_id=project.id)
@@ -180,6 +212,10 @@ def edit_project(id):
 
         flash('Project updated successfully!', 'success')
         return redirect(url_for('admin'))
+
+    # Set the keep_images checkboxes
+    for image in project.images:
+        form.keep_images.append_entry(data=True)
     return render_template('edit_project.html', form=form, project=project)
 
 

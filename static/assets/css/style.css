@@ -1322,3 +1322,24 @@ section {
 #footer .credits a {
 	color: #34b7a7;
 }
+
+/*--------------------------------------------------------------
+# Edit Project
+--------------------------------------------------------------*/
+.existing-images-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.existing-image {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.existing-image img {
+	max-width: 100px;
+	max-height: 100px;
+	margin-bottom: 5px;
+}
