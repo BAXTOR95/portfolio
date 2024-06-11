@@ -1,4 +1,5 @@
 import os
+import datetime
 from flask import render_template, flash, redirect, url_for, request, jsonify, abort
 from app import app, db
 from forms import ContactForm, ProjectForm, LoginForm, EditProjectForm, DeleteForm
@@ -123,7 +124,7 @@ def save_images(files):
     for file in files:
         if file.filename == '':  # Skip empty filenames
             continue
-        filename = secure_filename(file.filename)
+        filename = generate_unique_filename(file.filename)
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         os.makedirs(
             os.path.dirname(file_path), exist_ok=True
@@ -131,6 +132,13 @@ def save_images(files):
         file.save(file_path)
         image_urls.append(file_path.replace("\\", "/"))  # Ensure consistent URL format
     return image_urls
+
+
+def generate_unique_filename(original_filename):
+    filename, extension = os.path.splitext(original_filename)
+    timestamp = datetime.utcnow().strftime('%Y%m%d%H%M%S')
+    unique_filename = f"{secure_filename(filename)}_{timestamp}{extension}"
+    return unique_filename
 
 
 @app.route('/add_project', methods=['GET', 'POST'])
