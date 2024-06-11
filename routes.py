@@ -64,7 +64,7 @@ def contact():
 
 @app.route('/portfolio')
 def portfolio():
-    projects = Project.query.all()
+    projects = Project.query.order_by(Project.date.desc()).all()
     return render_template('portfolio.html', projects=projects)
 
 
