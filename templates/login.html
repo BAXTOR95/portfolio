@@ -27,6 +27,10 @@
 							(" is-invalid" if form.password.errors else ""),
 							placeholder="Password") }}
 						</div>
+						<div class="form-check mt-3">
+							{{ form.remember_me(class="form-check-input") }} {{
+							form.remember_me.label(class="form-check-label") }}
+						</div>
 						<div class="my-3">
 							{% if form.username.errors %}
 							<div class="error-message">{{ form.username.errors[0] }}</div>

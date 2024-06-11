@@ -84,6 +84,9 @@
 						<li><a href="{{ url_for('services') }}">Services</a></li>
 						<li><a href="{{ url_for('portfolio') }}">Portfolio</a></li>
 						<li><a href="{{ url_for('contact') }}">Contact</a></li>
+						{% if current_user.is_authenticated and current_user.is_admin %}
+						<li><a href="{{ url_for('admin') }}">Admin</a></li>
+						{% endif %}
 					</ul>
 					<i class="bi bi-list mobile-nav-toggle"></i>
 				</nav>
