@@ -1,7 +1,7 @@
 import os
-import datetime
 from flask import render_template, flash, redirect, url_for, request, jsonify, abort
 from app import app, db
+from datetime import datetime, UTC
 from forms import ContactForm, ProjectForm, LoginForm, EditProjectForm, DeleteForm
 from notification_manager import NotificationManager
 from datetime import date
@@ -136,7 +136,7 @@ def save_images(files):
 
 def generate_unique_filename(original_filename):
     filename, extension = os.path.splitext(original_filename)
-    timestamp = datetime.utcnow().strftime('%Y%m%d%H%M%S')
+    timestamp = datetime.now(UTC).strftime('%Y%m%d%H%M%S')
     unique_filename = f"{secure_filename(filename)}_{timestamp}{extension}"
     return unique_filename
 
