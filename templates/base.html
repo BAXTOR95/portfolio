@@ -93,6 +93,16 @@
 				<!-- .navbar -->
 
 				<div class="header-social-links">
+					<!-- Hidden Login Button -->
+					{% if current_user.is_authenticated %}
+					<a href="{{ url_for('logout') }}" class="hidden-login"
+						><i class="bi bi-box-arrow-right"></i
+					></a>
+					{% else %}
+					<a href="{{ url_for('login') }}" class="hidden-login"
+						><i class="bi bi-box-arrow-in-right"></i
+					></a>
+					{% endif %}
 					<a href="https://x.com/BAXTOR95" class="twitter"
 						><i class="bi bi-twitter"></i
 					></a>
