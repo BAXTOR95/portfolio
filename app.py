@@ -4,6 +4,7 @@ from flask_wtf.csrf import CSRFProtect
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager, current_user
+from flask_sitemap import Sitemap
 from config import Config
 
 PROD = True if os.environ.get('PROD', False) == 'True' else False
@@ -16,6 +17,7 @@ migrate = Migrate(app, db)
 login = LoginManager(app)
 login.login_view = 'login'
 csrf = CSRFProtect(app)
+ext = Sitemap(app=app)
 
 
 @login.user_loader
@@ -23,6 +25,37 @@ def load_user(user_id):
     from models import User
 
     return User.query.get(int(user_id))
+
+
+# Flask-Sitemap generators
+@ext.register_generator
+def index():
+    yield 'index', {}
+
+
+@ext.register_generator
+def about():
+    yield 'about', {}
+
+
+@ext.register_generator
+def contact():
+    yield 'contact', {}
+
+
+@ext.register_generator
+def portfolio():
+    yield 'portfolio', {}
+
+
+@ext.register_generator
+def resume():
+    yield 'resume', {}
+
+
+@ext.register_generator
+def services():
+    yield 'services', {}
 
 
 # Add zip to Jinja2 environment globals
