@@ -43,6 +43,21 @@ def about():
 def contact():
     form = ContactForm()
     if form.validate_on_submit():
+        if request.form.get('hp_field'):  # Honeypot field check
+            flash('Invalid submission.', 'danger')
+            return redirect(url_for('contact'))
+
+        recaptcha_response = request.form.get('g-recaptcha-response')
+        data = {
+            'secret': app.config['CAPTCHA_SECRET_KEY'],
+            'response': recaptcha_response,
+        }
+        r = request.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+        result = r.json()
+        if not result['success']:
+            flash('Invalid reCAPTCHA. Please try again.', 'danger')
+            return redirect(url_for('contact'))
+
         try:
             notification_manager = NotificationManager()
             contact = {

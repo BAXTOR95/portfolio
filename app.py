@@ -60,7 +60,7 @@ def services():
 
 
 # Add zip to Jinja2 environment globals
-app.jinja_env.globals.update(zip=zip)
+app.jinja_env.globals.update(zip=zip, app=app)
 
 from routes import *
 

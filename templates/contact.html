@@ -74,6 +74,10 @@ ideas, or potential collaborations.{% endblock %}
 						class="email-form"
 					>
 						{{ form.hidden_tag() }}
+						<!-- Honeypot field -->
+						<div style="display: none">
+							<input type="text" name="hp_field" id="hp_field" />
+						</div>
 						<div class="row">
 							<div class="col-md-6 form-group">
 								{{ form.name(class="form-control" + (" is-invalid" if
@@ -95,6 +99,13 @@ ideas, or potential collaborations.{% endblock %}
 							{{ form.message(class="form-control" + (" is-invalid" if
 							form.message.errors else ""), placeholder="Message", rows="5") }}
 						</div>
+						<div class="form-group mt-3 text-center">
+							<div
+								class="g-recaptcha d-inline-block"
+								data-sitekey="{{ app.config['CAPTCHA_PUBLIC_KEY'] }}"
+							></div>
+						</div>
+
 						<div class="my-3">
 							{% if form.name.errors %}
 							<div class="error-message">{{ form.name.errors[0] }}</div>
@@ -123,4 +134,5 @@ ideas, or potential collaborations.{% endblock %}
 </main>
 <!-- End #main -->
 
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 {% endblock %}
