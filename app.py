@@ -31,32 +31,32 @@ def load_user(user_id):
 # Flask-Sitemap generators
 @ext.register_generator
 def index():
-    yield 'index', {}, 'monthly', 1.0, date.today()
+    yield 'index', {}, date.today(), 'monthly', 1.0
 
 
 @ext.register_generator
 def about():
-    yield 'about', {}, 'monthly', 0.8, date.today()
+    yield 'about', {}, date.today(), 'monthly', 0.8
 
 
 @ext.register_generator
 def contact():
-    yield 'contact', {}, 'monthly', 0.8, date.today()
+    yield 'contact', {}, date.today(), 'monthly', 0.8
 
 
 @ext.register_generator
 def portfolio():
-    yield 'portfolio', {}, 'monthly', 0.8, date.today()
+    yield 'portfolio', {}, date.today(), 'monthly', 0.8
 
 
 @ext.register_generator
 def resume():
-    yield 'resume', {}, 'monthly', 0.8, date.today()
+    yield 'resume', {}, date.today(), 'monthly', 0.8
 
 
 @ext.register_generator
 def services():
-    yield 'services', {}, 'monthly', 0.8, date.today()
+    yield 'services', {}, date.today(), 'monthly', 0.8
 
 
 # Add zip to Jinja2 environment globals
