@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /admin
+Disallow: /login
+Disallow: /logout
+Disallow: /add_project
+Disallow: /edit_project
+Disallow: /delete_project
+
+Sitemap: https://brianarriaga.dev/sitemap.xml

@@ -1,5 +1,12 @@
 import os
-from flask import render_template, flash, redirect, url_for, request, jsonify, abort
+from flask import (
+    render_template,
+    flash,
+    redirect,
+    url_for,
+    request,
+    send_from_directory,
+)
 from app import app, db
 from datetime import datetime, UTC
 from forms import ContactForm, ProjectForm, LoginForm, EditProjectForm, DeleteForm
@@ -247,3 +254,8 @@ def delete_project(id):
         db.session.commit()
         flash('Project deleted successfully!', 'success')
     return redirect(url_for('admin'))
+
+
+@app.route('/robots.txt')
+def robots_txt():
+    return send_from_directory(app.static_folder, 'robots.txt')

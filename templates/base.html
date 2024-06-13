@@ -4,15 +4,49 @@
 		<meta charset="utf-8" />
 		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 		<meta name="msvalidate.01" content="54F23C05189E7A20937EF16A063401F6" />
+		<meta name="robots" content="index, follow" />
 		<title>{% block title %}{% endblock %} - Brian Arriaga</title>
-		{% block meta %}
-		<meta name="description" content="Brian Arriaga's Portfolio" />
+		<meta
+			name="description"
+			content="{% block description %}Brian Arriaga's Portfolio{% endblock %}"
+		/>
 		<meta name="author" content="Brian Arriaga" />
 		<meta
 			name="keywords"
 			content="Brian Arriaga, Systems Engineer, Software Developer, Portfolio"
 		/>
-		{% endblock meta %}
+		<link rel="canonical" href="{{ request.url }}" />
+
+		<!-- Open Graph Tags -->
+		<meta property="og:title" content="{% block og_title %}{% endblock %}" />
+		<meta
+			property="og:description"
+			content="{% block og_description %}{% endblock %}"
+		/>
+		<meta
+			property="og:image"
+			content="{% block og_image %}{{ url_for('static', filename='assets/img/og_image.png') }}{% endblock %}"
+		/>
+		<meta
+			property="og:url"
+			content="{% block og_url %}{{ request.url }}{% endblock %}"
+		/>
+		<meta property="og:type" content="website" />
+
+		<!-- Twitter Card Tags -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta
+			name="twitter:title"
+			content="{% block twitter_title %}{% endblock %}"
+		/>
+		<meta
+			name="twitter:description"
+			content="{% block twitter_description %}{% endblock %}"
+		/>
+		<meta
+			name="twitter:image"
+			content="{% block twitter_image %}{{ url_for('static', filename='assets/img/twitter_image.png') }}{% endblock %}"
+		/>
 
 		<!-- Favicons -->
 		<link
@@ -61,6 +95,22 @@
 			href="{{ url_for('static', filename='assets/css/style.css') }}"
 			rel="stylesheet"
 		/>
+
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "Person",
+				"name": "Brian Arriaga",
+				"url": "https://brianarriaga.dev",
+				"sameAs": [
+					"https://x.com/BAXTOR95",
+					"https://github.com/BAXTOR95",
+					"https://www.linkedin.com/in/brian-arriaga-s-28845b138/"
+				],
+				"jobTitle": "Systems Engineer, Software Developer",
+				"description": "Dedicated to developing secure, efficient, and scalable software solutions. Let's connect and discuss how I can help bring your ideas to life."
+			}
+		</script>
 	</head>
 
 	<body>
@@ -69,12 +119,13 @@
 			<div
 				class="container-fluid d-flex justify-content-between align-items-center"
 			>
-				<a href="{{ url_for('index') }}" class="logo"
-					><img
+				<a href="{{ url_for('index') }}" class="logo">
+					<img
 						src="{{ url_for('static', filename='assets/img/logo.png') }}"
-						alt=""
+						alt="Brian Arriaga Logo"
 						class="img-fluid"
-				/></a>
+					/>
+				</a>
 
 				<nav id="navbar" class="navbar order-last order-lg-0">
 					<ul>
