@@ -1,0 +1,34 @@
+<!-- _macros.html -->
+{% macro display_flash_message() %}
+<!-- Toast Container -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+	<!-- Get flash messages -->
+	{% with messages = get_flashed_messages(with_categories=true) %}
+	<!-- Display flash messages -->
+	{% if messages %}
+	<!-- Loop through messages -->
+	{% for category, message in messages %}
+	<div
+		class="toast align-items-center text-white bg-{{ 'success' if category == 'success' else 'danger' }} border-0"
+		role="alert"
+		aria-live="assertive"
+		aria-atomic="true"
+	>
+		<div class="d-flex">
+			<div class="toast-body">{{ message }}</div>
+			<button
+				type="button"
+				class="btn-close btn-close-white me-2 m-auto"
+				data-bs-dismiss="toast"
+				aria-label="Close"
+			></button>
+		</div>
+	</div>
+	<!-- End loop -->
+	{% endfor %}
+	<!-- End if -->
+	{% endif %}
+	<!-- End with -->
+	{% endwith %}
+</div>
+{% endmacro %}

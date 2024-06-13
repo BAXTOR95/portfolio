@@ -80,50 +80,85 @@ ideas, or potential collaborations.{% endblock %}
 						</div>
 						<div class="row">
 							<div class="col-md-6 form-group">
-								{{ form.name(class="form-control" + (" is-invalid" if
-								form.name.errors else ""), placeholder="Your Name", id="name")
-								}}
+								<div class="form-floating">
+									{{ form.name(class="form-control" + (" is-invalid" if
+									form.name.errors else ""), placeholder="Your Name", id="name")
+									}}
+									<!-- Label -->
+									{{ form.name.label(class="form-label") }}
+									<!-- Display form errors -->
+									{% if form.name.errors %}
+									<div
+										class="invalid-feedback"
+										style="display: block"
+									>
+										{{ form.name.errors[0] }}
+									</div>
+									{% endif %}
+								</div>
 							</div>
 							<div class="col-md-6 form-group mt-3 mt-md-0">
-								{{ form.email(class="form-control" + (" is-invalid" if
-								form.email.errors else ""), placeholder="Your Email",
-								id="email") }}
+								<div class="form-floating">
+									{{ form.email(class="form-control" + (" is-invalid" if
+									form.email.errors else ""), placeholder="Your Email",
+									id="email") }}
+									<!-- Label -->
+									{{ form.email.label(class="form-label") }}
+									<!-- Display form errors -->
+									{% if form.email.errors %}
+									<div
+										class="invalid-feedback"
+										style="display: block"
+									>
+										{{ form.email.errors[0] }}
+									</div>
+									{% endif %}
+								</div>
 							</div>
 						</div>
 						<div class="form-group mt-3">
-							{{ form.subject(class="form-control" + (" is-invalid" if
-							form.subject.errors else ""), placeholder="Subject", id="subject")
-							}}
+							<div class="form-floating">
+								{{ form.subject(class="form-control" + (" is-invalid" if
+								form.subject.errors else ""), placeholder="Subject",
+								id="subject") }}
+								<!-- Label -->
+								{{ form.subject.label(class="form-label") }}
+								<!-- Display form errors -->
+								{% if form.subject.errors %}
+								<div
+									class="invalid-feedback"
+									style="display: block"
+								>
+									{{ form.subject.errors[0] }}
+								</div>
+								{% endif %}
+							</div>
 						</div>
 						<div class="form-group mt-3">
-							{{ form.message(class="form-control" + (" is-invalid" if
-							form.message.errors else ""), placeholder="Message", rows="5") }}
+							<div class="form-floating">
+								{{ form.message(class="form-control" + (" is-invalid" if
+								form.message.errors else ""), placeholder="Message", rows="5")
+								}}
+								<!-- Label -->
+								{{ form.message.label(class="form-label") }}
+								<!-- Display form errors -->
+								{% if form.message.errors %}
+								<div
+									class="invalid-feedback"
+									style="display: block"
+								>
+									{{ form.message.errors[0] }}
+								</div>
+								{% endif %}
+							</div>
 						</div>
-						<div class="form-group mt-3 text-center">
-							<div
-								class="g-recaptcha d-inline-block"
-								data-sitekey="{{ app.config['CAPTCHA_PUBLIC_KEY'] }}"
-							></div>
-						</div>
+						<input type="hidden" name="recaptcha_token" id="recaptcha_token" />
 
-						<div class="my-3">
-							{% if form.name.errors %}
-							<div class="error-message">{{ form.name.errors[0] }}</div>
-							{% endif %}
+						<!-- Get flash messages -->
+						{% from "_macros.html" import display_flash_message %}
+						<!-- Display flash messages and form errors -->
+						{{ display_flash_message() }}
 
-							<!-- Get flash messages -->
-							{% with messages = get_flashed_messages(with_categories=true) %}
-							<!-- If there's flash messages -->
-							{% if messages %}
-							<!-- Loop through them -->
-							{% for category, message in messages %}
-							<div class="sent-message d-block">{{ message }}</div>
-							{% endfor %}
-							<!-- End if -->
-							{% endif %}
-							<!-- End with -->
-							{% endwith %}
-						</div>
 						<div class="text-center">{{ form.submit() }}</div>
 					</form>
 				</div>
@@ -134,5 +169,12 @@ ideas, or potential collaborations.{% endblock %}
 </main>
 <!-- End #main -->
 
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="https://www.google.com/recaptcha/api.js?render={{ app.config['CAPTCHA_PUBLIC_KEY'] }}"></script>
+<script>
+	grecaptcha.ready(function() {
+	    grecaptcha.execute('{{ app.config['CAPTCHA_PUBLIC_KEY'] }}', {action: 'submit'}).then(function(token) {
+	        document.getElementById('recaptcha_token').value = token;
+	    });
+	});
+</script>
 {% endblock %}

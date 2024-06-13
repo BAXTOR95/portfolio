@@ -1,4 +1,5 @@
 import os
+import requests
 from flask import (
     render_template,
     flash,
@@ -47,14 +48,19 @@ def contact():
             flash('Invalid submission.', 'danger')
             return redirect(url_for('contact'))
 
-        recaptcha_response = request.form.get('g-recaptcha-response')
-        data = {
-            'secret': app.config['CAPTCHA_SECRET_KEY'],
-            'response': recaptcha_response,
-        }
-        r = request.post('https://www.google.com/recaptcha/api/siteverify', data=data)
-        result = r.json()
-        if not result['success']:
+        recaptcha_token = request.form.get('recaptcha_token')
+        recaptcha_response = requests.post(
+            'https://www.google.com/recaptcha/api/siteverify',
+            data={
+                'secret': app.config['CAPTCHA_SECRET_KEY'],
+                'response': recaptcha_token,
+            },
+        ).json()
+
+        if (
+            not recaptcha_response.get('success')
+            or recaptcha_response.get('score', 0) < 0.5
+        ):
             flash('Invalid reCAPTCHA. Please try again.', 'danger')
             return redirect(url_for('contact'))
 

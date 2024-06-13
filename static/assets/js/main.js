@@ -278,6 +278,18 @@
 	});
 
 	/**
+	 * Flash Messages
+	 */
+
+	document.addEventListener('DOMContentLoaded', function () {
+		let toastElements = document.querySelectorAll('.toast');
+		toastElements.forEach(function (toastElement) {
+			let toast = new bootstrap.Toast(toastElement, { delay: 5000 });
+			toast.show();
+		});
+	});
+
+	/**
 	 * Initiate Pure Counter
 	 */
 	new PureCounter();
