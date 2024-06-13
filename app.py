@@ -6,6 +6,7 @@ from flask_migrate import Migrate
 from flask_login import LoginManager, current_user
 from flask_sitemap import Sitemap
 from config import Config
+from datetime import date
 
 PROD = True if os.environ.get('PROD', False) == 'True' else False
 
@@ -30,32 +31,32 @@ def load_user(user_id):
 # Flask-Sitemap generators
 @ext.register_generator
 def index():
-    yield 'index', {}
+    yield 'index', {}, 'monthly', 1.0, date.today()
 
 
 @ext.register_generator
 def about():
-    yield 'about', {}
+    yield 'about', {}, 'monthly', 0.8, date.today()
 
 
 @ext.register_generator
 def contact():
-    yield 'contact', {}
+    yield 'contact', {}, 'monthly', 0.8, date.today()
 
 
 @ext.register_generator
 def portfolio():
-    yield 'portfolio', {}
+    yield 'portfolio', {}, 'monthly', 0.8, date.today()
 
 
 @ext.register_generator
 def resume():
-    yield 'resume', {}
+    yield 'resume', {}, 'monthly', 0.8, date.today()
 
 
 @ext.register_generator
 def services():
-    yield 'services', {}
+    yield 'services', {}, 'monthly', 0.8, date.today()
 
 
 # Add zip to Jinja2 environment globals
