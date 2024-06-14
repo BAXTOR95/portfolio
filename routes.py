@@ -140,7 +140,7 @@ def logout():
 @login_required
 @admin_required
 def admin():
-    projects = Project.query.all()
+    projects = Project.query.order_by(Project.date.desc()).all()
     delete_form = DeleteForm()
     return render_template('admin.html', projects=projects, form=delete_form)
 

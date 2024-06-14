@@ -290,6 +290,24 @@
 	});
 
 	/**
+	 * Auto Expand Textarea
+	 */
+
+	document.addEventListener('DOMContentLoaded', function () {
+		const textareas = document.querySelectorAll('.auto-expand');
+
+		textareas.forEach((textarea) => {
+			textarea.style.height = 'auto';
+			textarea.style.height = textarea.scrollHeight + 'px';
+
+			textarea.addEventListener('input', function () {
+				this.style.height = 'auto';
+				this.style.height = this.scrollHeight + 'px';
+			});
+		});
+	});
+
+	/**
 	 * Initiate Pure Counter
 	 */
 	new PureCounter();

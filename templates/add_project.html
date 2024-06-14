@@ -12,8 +12,9 @@
 				<a
 					href="{{ url_for('admin') }}"
 					class="back-to-admin d-flex align-items-center justify-content-center"
-					><i class="bi bi-arrow-left-short"></i
-				></a>
+				>
+					<i class="bi bi-arrow-left-short"></i>
+				</a>
 				<h2>Add Project</h2>
 				<p>Fill in the details to add a new project to your portfolio.</p>
 			</div>
@@ -24,86 +25,98 @@
 						{{ form.hidden_tag() }}
 						<div class="row">
 							<div class="col-md-6 form-group">
-								<!-- category label -->
-								{{ form.category.label }}
-								<!-- category input field -->
-								{{ form.category(class="form-control" + (" is-invalid" if
-								form.category.errors else "")) }}
-								<!-- category error message -->
-								{% for error in form.category.errors %}
-								<div class="invalid-feedback">{{ error }}</div>
-								{% endfor %}
+								<div class="form-floating">
+									<!-- category label -->
+									{{ form.category(class="form-control" + (" is-invalid" if
+									form.category.errors else ""), placeholder="Category",
+									id="category") }}
+									<!-- Label -->
+									{{ form.category.label(class="form-label") }}
+									<!-- category error message -->
+									{% for error in form.category.errors %}
+									<div class="invalid-feedback">{{ error }}</div>
+									{% endfor %}
+								</div>
 							</div>
 							<div class="col-md-6 form-group mt-3 mt-md-0">
-								<!-- client label -->
-								{{ form.client.label }}
-								<!-- client input field -->
-								{{ form.client(class="form-control" + (" is-invalid" if
-								form.client.errors else "")) }}
-								<!-- client error message -->
-								{% for error in form.client.errors %}
+								<div class="form-floating">
+									<!-- client label -->
+									{{ form.client(class="form-control" + (" is-invalid" if
+									form.client.errors else ""), placeholder="Client",
+									id="client") }}
+									<!-- Label -->
+									{{ form.client.label(class="form-label") }}
+									<!-- client error message -->
+									{% for error in form.client.errors %}
+									<div class="invalid-feedback">{{ error }}</div>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+						<div class="form-group mt-3">
+							<div class="form-floating">
+								<!-- date label -->
+								{{ form.date(class="form-control" + (" is-invalid" if
+								form.date.errors else ""), placeholder="Date", id="date") }}
+								<!-- Label -->
+								{{ form.date.label(class="form-label") }}
+								<!-- date error message -->
+								{% for error in form.date.errors %}
 								<div class="invalid-feedback">{{ error }}</div>
 								{% endfor %}
 							</div>
 						</div>
 						<div class="form-group mt-3">
-							<!-- date label -->
-							{{ form.date.label }}
-							<!-- date input field -->
-							{{ form.date(class="form-control" + (" is-invalid" if
-							form.date.errors else "")) }}
-							<!-- date error message -->
-							{% for error in form.date.errors %}
-							<div class="invalid-feedback">{{ error }}</div>
-							{% endfor %}
+							<div class="form-floating">
+								<!-- URL label -->
+								{{ form.url(class="form-control" + (" is-invalid" if
+								form.url.errors else ""), placeholder="Project URL", id="url")
+								}}
+								<!-- Label -->
+								{{ form.url.label(class="form-label") }}
+								<!-- URL error message -->
+								{% for error in form.url.errors %}
+								<div class="invalid-feedback">{{ error }}</div>
+								{% endfor %}
+							</div>
 						</div>
 						<div class="form-group mt-3">
-							<!-- URL label -->
-							{{ form.url.label }}
-							<!-- URL input field -->
-							{{ form.url(class="form-control" + (" is-invalid" if
-							form.url.errors else "")) }}
-							<!-- URL error message -->
-							{% for error in form.url.errors %}
-							<div class="invalid-feedback">{{ error }}</div>
-							{% endfor %}
+							<div class="form-floating">
+								<!-- description label -->
+								{{ form.description(class="form-control auto-expand" + (" is-invalid" if
+								form.description.errors else ""), placeholder="Description",
+								id="description",) }}
+								<!-- Label -->
+								{{ form.description.label(class="form-label") }}
+								<!-- description error message -->
+								{% for error in form.description.errors %}
+								<div class="invalid-feedback">{{ error }}</div>
+								{% endfor %}
+							</div>
 						</div>
 						<div class="form-group mt-3">
-							<!-- description label -->
-							{{ form.description.label }}
-							<!-- description input field -->
-							{{ form.description(class="form-control" + (" is-invalid" if
-							form.description.errors else "")) }}
-							<!-- description error message -->
-							{% for error in form.description.errors %}
-							<div class="invalid-feedback">{{ error }}</div>
-							{% endfor %}
-						</div>
-						<div class="form-group mt-3">
-							<!-- title label -->
-							{{ form.title.label }}
-							<!-- title input field -->
-							{{ form.title(class="form-control" + (" is-invalid" if
-							form.title.errors else "")) }}
-							<!-- title error message -->
-							{% for error in form.title.errors %}
-							<div class="invalid-feedback">{{ error }}</div>
-							{% endfor %}
+							<div class="form-floating">
+								<!-- title label -->
+								{{ form.title(class="form-control" + (" is-invalid" if
+								form.title.errors else ""), placeholder="Title", id="title") }}
+								<!-- Label -->
+								{{ form.title.label(class="form-label") }}
+								<!-- title error message -->
+								{% for error in form.title.errors %}
+								<div class="invalid-feedback">{{ error }}</div>
+								{% endfor %}
+							</div>
 						</div>
 						<div class="form-group mt-3">
 							<!-- images label -->
-							{{ form.images.label }}
-							<!-- images input field -->
 							{{ form.images(class="form-control" + (" is-invalid" if
-							form.images.errors else ""), multiple=True) }}
+							form.images.errors else ""), multiple=True, id="images") }}
 							<!-- images error message -->
 							{% for error in form.images.errors %}
 							<div class="invalid-feedback">{{ error }}</div>
 							{% endfor %}
 						</div>
-						<div class="text-center mt-4">
-							{{ form.submit(class="btn btn-primary") }}
-						</div>
+						<div class="text-center mt-4">{{ form.submit() }}</div>
 					</form>
 				</div>
 			</div>

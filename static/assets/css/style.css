@@ -106,9 +106,10 @@ h6 {
 }
 
 /*--------------------------------------------------------------
-# Back to Admin Button
+# Back to Admin and Add Project Button
 --------------------------------------------------------------*/
-.back-to-admin {
+.back-to-admin,
+.add-project-btn {
 	position: fixed;
 	background: #34b7a7;
 	width: 40px;
@@ -118,13 +119,15 @@ h6 {
 	transition: all 0.4s;
 }
 
-.back-to-admin i {
+.back-to-admin i,
+.add-project-btn i {
 	font-size: 24px;
 	color: #fff;
 	line-height: 0;
 }
 
-.back-to-admin:hover {
+.back-to-admin:hover,
+.add-project-btn:hover {
 	background: #49cbbb;
 	color: #fff;
 }
@@ -1304,7 +1307,9 @@ section {
 	padding: 10px 12px;
 }
 
-.contact .email-form input[type='submit'] {
+.contact .email-form input[type='submit'],
+.add-project input[type='submit'],
+.edit-project input[type='submit'] {
 	background: #34b7a7;
 	border: 0;
 	padding: 10px 30px 12px 30px;
@@ -1313,7 +1318,9 @@ section {
 	border-radius: 50px;
 }
 
-.contact .email-form button[type='submit']:hover {
+.contact .email-form button[type='submit']:hover,
+.add-project button[type='submit']:hover,
+.edit-project button[type='submit']:hover {
 	background: #3dc8b7;
 }
 
@@ -1377,4 +1384,76 @@ section {
 
 .hidden-login:hover {
 	opacity: 0.5;
+}
+
+/*--------------------------------------------------------------
+# Custom styles for admin page
+--------------------------------------------------------------*/
+.card {
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	border: none;
+	transition: transform 0.3s;
+}
+
+.card:hover {
+	transform: translateY(-10px);
+}
+
+.card-body {
+	padding: 1.5rem;
+}
+
+.card-footer {
+	background: #f8f9fa;
+	border-top: 1px solid #e9ecef;
+}
+
+.card .btn-primary,
+.card .btn-danger {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	font-size: 1rem;
+}
+
+.card .btn-primary:hover {
+	background-color: #0056b3;
+}
+
+.card .btn-danger:hover {
+	background-color: #c82333;
+}
+
+.card .btn-primary i,
+.card .btn-danger i {
+	margin: 0;
+}
+
+.existing-images-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	margin-top: 1rem;
+}
+
+.existing-image {
+	position: relative;
+}
+
+.existing-image img {
+	max-width: 150px;
+	border-radius: 0.25rem;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.existing-image .form-check {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	background: rgba(255, 255, 255, 0.8);
+	padding: 0.25rem 0.5rem;
+	border-radius: 0.25rem;
 }
